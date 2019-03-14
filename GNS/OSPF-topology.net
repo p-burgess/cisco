@@ -1,0 +1,72 @@
+autostart = False
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[2691]]
+        image = C:\Users\gato\Documents\GNS3\images\IOS\c2691-advipservicesk9-mz.124-15.T6.bin
+        idlepc = 0x6024699c
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R4]]
+        model = 2691
+        console = 2012
+        aux = 2100
+        cnfg = configs\R4.cfg
+        wic0/0 = WIC-1T
+        wic0/1 = WIC-1T
+        wic0/2 = WIC-1T
+        s0/0 = R3 s0/0
+        slot1 = NM-4T
+        x = 85.7939392393
+        y = 181.646752982
+        hx = 20.5
+        hy = 17.4264068712
+    [[ROUTER R1]]
+        model = 2691
+        console = 2009
+        aux = 2101
+        cnfg = configs\R1.cfg
+        wic0/0 = WIC-1T
+        wic0/1 = WIC-1T
+        wic0/2 = WIC-1T
+        s0/0 = R2 s0/0
+        slot1 = NM-4T
+        x = -198.462986798
+        y = 168.91883092
+        hx = 21.9142135624
+        hy = 20.2548339959
+    [[ROUTER R2]]
+        model = 2691
+        console = 2010
+        aux = 2102
+        cnfg = configs\R2.cfg
+        wic0/0 = WIC-1T
+        wic0/1 = WIC-1T
+        wic0/2 = WIC-1T
+        s0/0 = R1 s0/0
+        s0/1 = R3 s0/1
+        slot1 = NM-4T
+        x = -204.119841047
+        y = -14.9289321881
+        hx = 21.9142135624
+        hy = 20.2548339959
+    [[ROUTER R3]]
+        model = 2691
+        console = 2011
+        aux = 2103
+        cnfg = configs\R3.cfg
+        wic0/0 = WIC-1T
+        wic0/1 = WIC-1T
+        wic0/2 = WIC-1T
+        s0/0 = R4 s0/0
+        s0/1 = R2 s0/1
+        slot1 = NM-1FE-TX
+        x = 80.1370849898
+        y = -6.4436508139
+        hx = 19.0857864376
+        hy = 18.8406204336
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    m11 = 0.707106781187
+    m22 = 0.707106781187

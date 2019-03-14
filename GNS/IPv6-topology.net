@@ -1,0 +1,104 @@
+autostart = False
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[2691]]
+        image = C:\Users\gato\Documents\GNS3\images\IOS\c2691-advipservicesk9-mz.124-15.T6.bin
+        idlepc = 0x6024699c
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R4]]
+        model = 2691
+        console = 2003
+        wic0/0 = WIC-1T
+        wic0/1 = WIC-1T
+        wic0/2 = WIC-1T
+        s0/0 = R3 s1/0
+        slot1 = NM-4T
+        cnfg = configs\R4.cfg
+        x = 43.0
+        y = -56.0
+        hx = 19.5
+        hy = 18.0
+    [[ROUTER R1]]
+        model = 2691
+        console = 2000
+        wic0/0 = WIC-1T
+        wic0/1 = WIC-1T
+        wic0/2 = WIC-1T
+        s0/0 = R2 s0/0
+        slot1 = NM-4T
+        cnfg = configs\R1.cfg
+        x = -190.0
+        y = -61.0
+        hx = 21.5
+        hy = 16.0
+    [[ROUTER R2]]
+        model = 2691
+        console = 2001
+        wic0/0 = WIC-1T
+        wic0/1 = WIC-1T
+        wic0/2 = WIC-1T
+        s0/0 = R1 s0/0
+        s0/1 = R3 s0/1
+        slot1 = NM-4T
+        cnfg = configs\R2.cfg
+        x = -183.0
+        y = -219.0
+        hx = 21.5
+        hy = 19.0
+    [[ROUTER R3]]
+        model = 2691
+        console = 2002
+        wic0/0 = WIC-1T
+        wic0/1 = WIC-1T
+        wic0/2 = WIC-1T
+        s0/1 = R2 s0/1
+        slot1 = NM-4T
+        s1/0 = R4 s0/0
+        cnfg = configs\R3.cfg
+        x = 40.0
+        y = -214.0
+        hx = 19.5
+        hy = 20.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    m11 = 0.707106781187
+    m22 = 0.707106781187
+    [[NOTE 1]]
+        text = s0/0
+        x = 27.5455736937
+        y = -17.6263704327
+        interface = R4 s0/0
+        color = "#00ff00"
+    [[NOTE 2]]
+        text = s1/0
+        x = 38.4544263063
+        y = 61.6263704327
+        interface = R3 s1/0
+        color = "#00ff00"
+    [[NOTE 3]]
+        text = s0/1
+        x = -6.91757389203
+        y = 24.5665725345
+        interface = R3 s0/1
+        color = "#00ff00"
+    [[NOTE 4]]
+        text = s0/1
+        x = 72.917573892
+        y = 19.4334274655
+        interface = R2 s0/1
+        color = "#00ff00"
+    [[NOTE 5]]
+        text = s0/0
+        x = 35.1457930099
+        y = 61.9424031871
+        interface = R2 s0/0
+        color = "#00ff00"
+    [[NOTE 6]]
+        text = s0/0
+        x = 30.8542069901
+        y = -17.9424031871
+        interface = R1 s0/0
+        color = "#00ff00"

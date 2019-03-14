@@ -1,0 +1,93 @@
+autostart = False
+[127.0.0.1:7213]
+    workingdir = working
+    udp = 10100
+    [[2691]]
+        image = C:\Users\gato\Documents\GNS3\images\IOS\c2691-advipservicesk9-mz.124-15.T6.bin
+        ram = 256
+        idlepc = 0x6024699c
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R3]]
+        model = 2691
+        console = 2002
+        aux = 2104
+        cnfg = configs\R3.cfg
+        f0/1 = SW2 5
+        slot1 = NM-4T
+        s1/1 = R2 s1/1
+        x = 46.0
+        y = -44.0
+        hx = 24.5
+        hy = 19.0
+[127.0.0.1:7212]
+    workingdir = working
+    udp = 10000
+    [[2691]]
+        image = C:\Users\gato\Documents\GNS3\images\IOS\c2691-advipservicesk9-mz.124-15.T6.bin
+        ram = 256
+        idlepc = 0x6024699c
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R1]]
+        model = 2691
+        console = 2000
+        aux = 2105
+        cnfg = configs\R1.cfg
+        f0/1 = SW1 5
+        slot1 = NM-4T
+        s1/0 = R2 s1/0
+        x = -96.0
+        y = -47.0
+        hx = 25.5
+        hy = 19.0
+    [[ROUTER R2]]
+        model = 2691
+        console = 2001
+        aux = 2106
+        cnfg = configs\R2.cfg
+        slot1 = NM-4T
+        s1/0 = R1 s1/0
+        s1/1 = R3 s1/1
+        x = -38.0
+        y = -159.0
+        hx = 23.5
+        hy = 21.0
+    [[ETHSW SW1]]
+        5 = access 1 R1 f0/1
+        6 = access 1 VBOX1 e0
+        x = -98.5
+        y = 63.0
+        hx = 12.0
+        hy = 10.0
+    [[ETHSW SW2]]
+        5 = access 1 R3 f0/1
+        6 = access 1 VBOX2 e0
+        x = 48.0857864376
+        y = 68.7989898732
+        hx = 7.0
+        hy = 14.0
+[vbox 127.0.0.1:11525]
+    workingdir = working
+    udp = 20900
+    [[VBoxDevice]]
+        image = 10.04.3
+        nics = 1
+    [[VBOX VBOX2]]
+        image = xp
+        e0 = SW2 6
+        x = 60.5
+        y = 158.5
+        hx = 7.0
+        hy = 39.0
+    [[VBOX VBOX1]]
+        e0 = SW1 6
+        x = -95.5
+        y = 157.5
+        hx = 6.0
+        hy = 37.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    m11 = 0.707106781187
+    m22 = 0.707106781187
