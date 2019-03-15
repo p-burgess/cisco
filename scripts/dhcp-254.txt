@@ -1,0 +1,16 @@
+hostname R3
+domain-name obss.local
+int f0/0
+ip address 192.168.254.1 255.255.255.0
+no shutdown
+int f0/1
+ip address 192.168.254.100 255.255.255.0
+service dhcp
+no ip dhcp conflict logging
+ip dhcp excluded-address 192.168.254.1 192.168.254.100
+ip dhcp pool EXTERNAL
+network 192.168.254.0 /24
+domain-name obss.local
+dns-server 192.168.254.161
+default-router 192.168.254.100
+lease-time infinite

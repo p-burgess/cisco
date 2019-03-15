@@ -1,0 +1,123 @@
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+no memory-size iomem 5
+no ip cef
+!
+!
+no ip dhcp use vrf connected
+!
+ip dhcp pool INT
+   network 192.168.1.0 255.255.255.0
+   dns-server 192.168.1.1
+   default-router 192.168.1.1
+   domain-name obss.local
+   lease infinite
+!
+!
+no ip domain lookup
+ip auth-proxy max-nodata-conns 3
+ip admission max-nodata-conns 3
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+archive
+ log config
+  hidekeys
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ duplex auto
+ speed auto
+ no shutdown
+ ip nat inside
+!
+interface FastEthernet0/1
+ ip address dhcp
+ duplex auto
+ speed auto
+ no shutdown
+ ip nat outside
+!
+access-list 1 permit 192.168.1.0 255.255.255.0
+ip nat inside source list 1 interface fa0/1 overload
+!
+!
+no ip forward-protocol nd
+ip route 0.0.0.0 0.0.0.0 f0/0
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+alias interface show do show
+alias configure show do show
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+line vty 5 15
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+!
+!
+end

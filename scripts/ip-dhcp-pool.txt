@@ -1,0 +1,6 @@
+ip dhcp pool EXT
+lease infin
+network 192.168.2.0 255.255.255.0
+dns-server 192.168.2.1
+default-rout 192.168.2.1
+domain-name obss.local
