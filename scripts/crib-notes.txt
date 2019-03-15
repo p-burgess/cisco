@@ -1,0 +1,139 @@
+switch#	terminal 
+        history	[size (0 – 256)]	enables terminal history
+			no history			disables terminal history
+					[size]		sets terminal history to default 10 command lines
+        show 	
+        interface 
+        {interface-id ¦ range}
+			startup-config
+			running-config
+			flash:
+			version
+			ip 
+        {interface [brief] ¦ http ¦ arp}
+        ssh
+			mac-address-table
+			running-config
+        dtp interface
+              ssh
+			port-security 
+              [interface interface-id] [address]
+        interfaces interface-id switchport
+				vlan vlan-id
+        vlan 
+        brief 
+        id vlan-id
+        name vlan-name
+        summary
+			interfaces 
+        interface-id
+        vlan vlan-id
+        switchport
+          trunk
+			vtp 
+        status
+        counters	
+			spanning-tree 
+        active
+				detail
+			clear spanning-tree detected-protocols
+			
+(config#)		copy 	
+        system:running-config flash:startup-config
+				running-config startup-config
+				startup-config flash:config.bak
+				system:running-config tftp:[[[//location]/directory]/filename]
+				tftp:[[[//location]/directory]/filename] nvram:startup-config
+        delete 	nvram:[filename]
+              erase 	nvram:[filename]
+        reload	
+			interface 
+        vlan 99
+          interface-id
+				interface-id.subinterface-id
+			enable 
+              password password 
+        secret password
+              no enable secret
+			service password-encryption
+			no service password-encryption
+        line 
+  console 0
+				vty 0 15
+			banner 
+        login & login banner &
+				motd & message of the day &
+			hostname hostname
+			crypto 
+              key 
+        generate rsa
+        zeroize rsa				disable SSH 
+          ip 
+          domain-name domain-name 
+          ssh 
+        version [1 ¦ 2]
+					{terminal seconds ¦ authentication-retries number}
+				dhcp snooping 				enable DHCP snooping
+					limit rate rate
+				vlan number [number]
+			vlan vlan-id
+			vtp 
+        pruning 					this is disabled by default
+				mode {server ¦ client ¦ transparent}
+				domain domain-name
+				password password
+				version {1 ¦ 2}
+			spanning-tree 
+              mode rapid-pvst
+              vlan vlan-id root 
+              primary
+        			[diameter value]		value = 2 to 7, on root bridge
+        secondary
+        priority value				value = 0 – 65536, steps of 4096
+			
+(config-if)#	ip
+        address ip address netmask
+          default-gateway next-hop address
+          http 
+          authentication enable
+  server
+        dhcp snooping trust				allow DHCP server responses
+			switchport 
+          nonegotiate 
+          trunk 
+        native vlan vlan-id 
+          allowed vlan add vlan-list
+        mode [access vlan-id¦ dynamic [auto ¦ desirable] ¦ trunk]
+				access vlan 99
+				port-security 					enable port security on interface
+          cr
+    mac-address mac-address
+        mac-address sticky [mac-address mac-address]
+        violation [protect ¦ restrict ¦ shutdown]
+        maximum 50				50 allowed mac addresses
+        
+			mdix auto
+			duplex [auto ¦ half ¦ full]
+			speed [auto ¦ speed]
+        mac-address-table static mac-address vlan vlan-id interface interface-id
+        [mls qos trust cos]				ensures voice traffic is identified as priority
+              traffic
+        [switchport voice vlan vlan-id]
+			spanning-tree 
+              port-priority value		value = 0 - 240
+        	cost value 			value = 1 – 200,000,000
+              portfast
+              link-type point-to-point
+			no spanning-tree 
+        cost				reverts to default cost
+				portfast
+		
+(config-subif#)	encapsulation dot1q vlan-id 
+  ipaddress ip-address netmask
+
+(config-vlan)#	name vlan-name
+(config-line)#	transport input ssh				restrict connections to SSH
+			password password
+			no password
+        login
+
